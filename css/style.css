@@ -1,0 +1,1125 @@
+@charset "UTF-8";
+
+/* リセットとベーススタイル */
+body {
+		margin: 0;
+		padding: 0;
+		/* ページの背景色はbodyに適用し、PCで左右の余白部分まで色を付ける */
+		background-color: #f5f5f5; 
+		font-family: 'Noto Sans JP', sans-serif;
+		line-height: 1.6;
+		color: #333;
+		text-align: center;
+		font-size:  1.2rem; /* 12px */
+}
+
+a {
+		text-decoration: none;
+}
+
+li {
+		list-style: none;
+}
+
+/* -------------------- 共通コンテナ設定 (.lp-containerのみで制御) -------------------- */
+.lp-container {
+		width: 100%; /* モバイルでは画面いっぱいに */
+		
+		/* PCでの中央揃えと固定幅の設定 */
+		margin: 0 auto;
+		
+		/* LPのコンテンツ領域の背景色（白） */
+		background-color: #ffffff;
+		padding-bottom: 25px;
+
+		/* モバイルでの左右の余白（コンテンツが画面端に張り付かないように） */
+		/* bodyにpaddingを入れる代わりに、lp-containerの子要素で対応 */
+}
+
+/* PC・タブレットでの幅固定と中央揃え */
+@media (min-width: 601px) {
+		/* bodyへの設定を外し、lp-containerにのみ適用 */
+		.lp-container {
+				max-width: 600px;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+		}
+}
+
+/* 【画像】常に親要素の幅に合わせる */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	/* 全てのブロックレベルの画像を中央揃えにする */
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+/* -------------------- ヒーローセクション (header.hero-section) 更新 -------------------- */
+
+.hero-section {
+		background-color: #01BF61; /* メインの緑色背景 */
+		color: white; 
+		padding: 0; 
+		text-align: center;
+		position: relative; 
+		overflow: hidden; /* 擬似要素がはみ出すのを防ぐ */
+}
+
+/* ヒーローヘッダー全体を右寄せにする */
+.hero-header {
+		padding: 20px 20px 5px 20px;
+		text-align: right; /* テキスト全体は右寄せを維持 */
+		position: relative;
+		z-index: 10;
+}
+
+/* -------------------- 斜めの白い切り欠き（擬似要素で作成） -------------------- */
+
+/* .hero-header の左側に、白い斜めの切り欠きを作成 */
+.hero-header::before {
+		content: '';
+		position: absolute;
+		top: 0; 
+		left: 0;
+		
+		/* 切り欠きのサイズと形状を画像に合わせて調整 */
+		width: 70px; /* 白いエリアの幅 */
+		height: 110%; 
+		
+		/* 背景色（もともと設定していた背景色 #ffffff） */
+		background-color: #ffffff;
+		
+		/* 左下から右上に斜めに切り上がる形状を作成 */
+		/* clip-path: polygon(0 0 (左上), 100% 0 (右上), 80% 100% (右下), 0 100% (左下)); */
+		/* 実際の画像は左側が垂直で、右側に斜めのカットがあるため、値を調整 */
+		/* 左側が白く、緑の領域が斜めに食い込む形状 */
+		clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
+		
+		z-index: 5; /* テキストよりも下に配置 */
+}
+
+/* ヒーローヘッダー内のテキスト要素（右寄せを維持） */
+.hero-title-main {
+		font-size: 1.6rem;
+		font-weight: 700;
+		margin: 0;
+}
+
+/* 「最高額」の黄色いハイライト */
+.highlight-main {
+		color: #ffeb3b;
+		font-weight: 900; 
+		font-size: 3rem;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .hero-header::before {
+      width: 200px; /* 白いエリアの幅 */
+    }
+
+		.hero-title-main {
+		font-size: 2.3rem;
+		}
+
+		.highlight-main {
+			font-size: 4rem;
+		}
+}
+
+/* -------------------- 車画像とCTAバー（既存CSS） -------------------- */
+
+/* 車の画像コンテナ */
+.hero-image {
+		max-width: 100%;
+		overflow: hidden;
+}
+
+.hero-image img {
+		margin-bottom: -5px; 
+}
+
+/* CTAバー（平均26万円の部分） */
+.hero-cta-bar {
+		background-color: #01BF61; 
+		padding: 5px 10px 5px;
+		font-size: 1.2rem;
+		font-weight: 700;
+		line-height: 2;
+}
+
+/* 「平均26万円」の強調 */
+.cta-highlight-value {
+		display: block; 
+		font-size: 1.8rem;
+		font-weight: 900;
+		color: #ffeb3b; 
+		margin: 5px 0;
+		line-height: 1.2;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .hero-cta-bar {
+			font-size: 1.5rem;
+		}
+
+		.cta-highlight-value {
+			font-size: 2.1rem;
+		}
+}
+
+
+
+/* -------------------- お悩みセクション (problem-sub-section) -------------------- */
+
+.main-content-section {
+	margin-bottom: 40px;
+}
+
+
+.problem-sub-section {
+		padding: 50px 20px 0;
+		background-color: #ffffff;
+}
+
+/* セクションタイトル（こんなお悩みありませんか？） */
+.problem-sub-section .section-title {
+		font-size: 1.3rem;
+		font-weight: bold;
+		color: #333;
+		margin-bottom: 30px;
+		padding: 10px 0;
+		position: relative;
+		display: inline-block;
+}
+
+.black-big {
+	font-weight: 700;
+	font-size: 2rem;
+}
+
+/* タイトル下の緑色の線 */
+.problem-sub-section .section-title::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%; 
+		height: 3px;
+		background-color: #01BF61; /* ヒーローエリアと同じ緑を使用 */
+		border-radius: 5px;
+}
+
+/* タイトル上の黄色の点 */
+.problem-sub-section .section-title::before {
+		content: '・・・'; 
+		position: absolute;
+		top: 0;
+		left: 38%;
+		transform: translateX(-50%);
+		color: #ffeb3b; 
+		font-size: 1.2rem;
+		line-height: 1;
+		letter-spacing: 10px; 
+		z-index: 2;
+}
+
+
+/* お悩みリスト全体 */
+.problem-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 auto;
+		max-width: 430px;
+		text-align: left;
+}
+
+/* お悩みリストの各アイテム */
+.problem-list li {
+		font-size: 0.9rem; 
+		line-height: 1.5;
+		/* チェックマークのサイズに合わせてパディングを調整 */
+		padding-left: 40px; 
+		position: relative;
+		font-weight: 700;
+		margin: 0 20px 25px 15px;
+}
+
+
+@media (min-width: 555px) {
+    .problem-list li {
+			font-size: 1.15rem;
+			margin-bottom: 30px;
+		}
+
+		.problem-sub-section .section-title {
+		font-size: 1.5rem;
+		}
+}
+
+/* -------------------- チェックマークのスタイル -------------------- */
+
+.problem-list .check-icon::before {
+		content: "✓"; /* チェックマークのユニコード文字 */
+		
+		/* 枠線の位置調整 */
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		
+		/* 枠線のスタイル (緑の線画のような見た目) */
+		width: 20px; 
+		height: 20px;
+		/* 画像のチェックマークに合わせて、緑色をヒーローエリアの緑 (例: #6fb973) よりも明るい色 (#5acbaf) に調整 */
+		border: 2px solid #01BF61; 
+		border-radius: 5px; /* 角を少し丸くする */
+		
+		/* チェックマークの文字自体のスタイル調整 */
+		color: #01BF61; /* チェックマークの色 */
+		font-size: 1.2em;
+		font-weight: 900;
+		
+		/* 文字を枠の中央に配置 */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		line-height: 1; /* 行の高さをリセットして中央寄せを正確に */
+}
+
+/*---------- そんなお悩みをお持ちの方、必見!! ------*/
+
+/* --- アニメーションの定義 --- */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.problem-solution-bar {
+		/* 背景と文字の色 */
+	background-color: #FF6900; /* 濃い赤色 */
+	color: white;             /* 白い文字 */
+
+	/*  グラデーション設定 */
+	/* to bottom right: 右下へ向かう方向を指定 */
+	background-image: linear-gradient(
+			to bottom right,
+			#FF6900, /* 左上からの開始色 */
+			#FB2C36  /* 右下へ向かう終了色 */
+	);
+		
+	/* 文字のスタイル */
+	font-size: 1.2rem; 
+	font-weight: 900;  /* 非常に太いフォント */
+	text-align: center;
+	line-height: 1.5; /* 行の高さを調整 */
+
+	/* 外側の余白 */
+	margin: 30px auto; /* 上下に30px、左右をautoで中央揃え */
+		
+	/* 内側の余白: ボタンのサイズを決定 */
+	padding: 18px 20px; 
+		
+	/* 角丸: 非常に大きく丸める */
+	border-radius: 25px; 
+
+	/* ↓↓↓ テキストの折り返しを禁止 ↓↓↓ */
+	white-space: nowrap;
+		
+	/* 幅の制御: テキストに合わせて幅を狭くする */
+	display: inline-block; 
+	max-width: 90%; /* モバイルで広がりすぎないように制限 */
+		
+	/* 影の追加: 立体感を出すための影 */
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); 
+		
+	/* テキストの影（文字をくっきり見せるため) */
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+
+/* ↓↓↓ アニメーションの設定 ↓↓↓ */
+	transform: scale(1); /* transformの初期値 */
+	animation-name: pulse-animation;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .problem-solution-bar {
+			font-size: 1.5rem;
+		}
+}
+
+
+
+
+
+
+/* -------------------- 比較ディスプレイエリア (comparison-display-area) -------------------- */
+
+/* comparison-display-area をセクション全体のコンテナとして利用 */
+.comparison-display-area {
+		padding: 30px 20px;
+		background-color: #ffffff;
+		text-align: center;
+}
+
+/* セクションタイトル (<h3> 最大10社の買取額をカンタン比較) */
+.comparison-display-area-title {
+		font-size: 1.5rem;
+		line-height: 1.4;
+		font-weight: bold;
+		margin: 0 0 20px 0;
+		
+		/* 文字色の設定 */
+		color: #01BF61; /* メインの緑色 */
+}
+
+/* タイトル内の強調文字 (<strong>最大10社</strong>) */
+.greenfont-yellowline {
+		/* 「最大10社」を大きく、緑色の濃淡を付けて強調 */
+		font-size: 1.5rem; 
+		color: #01BF61; /* 少し濃い目の緑 */
+		background: linear-gradient(transparent 60%, #ffee9c 60%); 
+		padding: 0 5px;
+		font-weight: 900;
+		display: inline-block;
+}
+
+/* 画像コンテナ */
+.comparison-image {
+		margin: 50px auto;
+		/* 画像が小さいため、最大幅を制限して中央に配置 */
+		max-width: 250px; 
+}
+
+/* 下のコールテキスト (あなたの愛車の本当の価値、調べてみませんか？) */
+.value-check-call {
+		font-size: 1.5rem;
+		line-height: 1.6;
+		margin: 20px 0 30px 0;
+		font-weight: 500;
+}
+
+ /* 黄色のマーカー */ 
+.yellow-line {
+		background: linear-gradient(transparent 60%, #ffee9c 60%); 
+		padding: 0 5px;
+		font-weight: 900;
+		color: #333;
+}
+
+
+/*------説明テキスト部分-----*/
+.objection-handling {
+	font-size: 0.95rem;
+	line-height: 2.5;
+	font-weight: 900;
+	margin-bottom: 32px;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .objection-handling {
+			font-size: 1.2rem;
+		}
+
+		.greenfont-yellowline {
+			font-size: 2rem;
+		}
+
+		.comparison-image {
+			max-width: 300px; 
+		}
+}
+
+
+
+/* -------------------- CTAボタンエリア (cta-button-area) -------------------- */
+
+.cta-button-area {
+		padding: 0px 20px 30px 20px;
+		text-align: center;
+		/* 背景色を白にして、ボタンを目立たせる */
+		background-color: #ffffff; 
+}
+
+.cta-button-area-s {
+		padding: 0px 20px 30px 20px;
+		text-align: center;
+		background-color: #FCEE21; 		
+}
+
+/* -------------------- メインCTAボタン (main-cta-button) -------------------- */
+
+.main-cta-button {
+		/* グラデーション背景: オレンジから赤へ (以前のリクエストに基づき135degを使用) */
+		background: linear-gradient(
+				135deg, /* 左上から右下へ */
+				#FF6900, /* 左上からの開始色 (オレンジ) */
+				#FB2C36  /* 右下へ向かう終了色 (赤) */
+		);
+		
+		/* テキストスタイル */
+		color: white;
+		text-align: center;
+		font-family: inherit;
+		line-height: 1.2;
+		cursor: pointer;
+		
+		/* パディングとサイズ */
+		width: 100%;
+		max-width: 400px; /* PCでの最大幅を制限 */
+		margin-left: auto;
+		margin-right: auto;
+
+		padding: 15px 10px;
+		
+		/* 形状 */
+		border: none;
+		border-radius: 15px; /* 角を大きく丸くする */
+
+		/* シャドウ (画像のような立体的で柔らかい影) */
+		box-shadow: 0 8px 15px rgba(255, 105, 0, 0.4); /* オレンジの色味が入った影 */
+		
+		/* 中のコンテンツを縦に並べるためのFlexbox設定 */
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		
+		/* ホバー/アクティブ時のアニメーション（UX向上） */
+		transition: all 0.2s ease;
+}
+
+.main-cta-button:hover {
+		opacity: 0.9;
+		box-shadow: 0 10px 20px rgba(255, 105, 0, 0.5);
+		transform: translateY(-2px);
+}
+
+/* 上部のテキスト (無料/45秒で入力完了！) */
+.main-cta-button span:first-child {
+		font-size: 1.3rem;
+		font-weight: bold;
+		margin-bottom: 10px;
+}
+
+/* 下部のメインメッセージ (今すぐ愛車の相場をチェックする) */
+.cta-main-text {
+		font-size: 1rem; 
+		display: block; /* 念のためブロック化 */
+}
+
+/* CTAアイコン部分 */
+.main-cta-button {
+		/* ... 既存のスタイル ... */
+		position: relative; /* 擬似要素の基準とする */
+}
+
+/* 白い矢印の擬似要素 */
+.main-cta-button::before {
+		content: '↗'; /* 上昇を示す矢印のユニコード */
+		position: absolute;
+		top: 32px; /* 上端からの位置 */
+		left: 20px; /* 左端からの位置 */
+		
+		color: rgba(255, 255, 255, 0.8); /* 透明度のある白 */
+		font-size: 1.3rem;
+		font-weight: 900;
+		
+		/* 角度を画像に近づける */
+		transform: rotate(10deg); 
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .main-cta-button span:first-child {
+			font-size: 1.6rem;
+		}
+
+		.cta-main-text {
+			font-size: 1.2rem; 
+		}
+}
+
+/*--------- 買取section --------*/
+.green-zone {
+	background-color: #01BF61;
+	padding: 20px 10px;
+	font-size: 1.3rem;
+	font-weight: 700;
+	line-height: 2;
+	color: #ffffff;
+	margin-bottom: 65px;
+}
+
+.yellow-font {
+	font-size: 2rem;
+	font-weight: 900;
+	color: #ffeb3b;
+	margin: 5px 0;
+	line-height: 1.2;
+}
+
+.use-people {
+	margin: 30px 0;
+	font-size: 1.5rem;
+}
+
+.trust-and-advantage-section .yellow-line {
+	font-size: 1.2rem;
+}
+
+.greenfont-yellowline-s {
+	font-size: 1.2rem; 
+	color: #01BF61; 
+	background: linear-gradient(transparent 60%, #ffee9c 60%); 
+	padding: 0 5px;
+	font-weight: 900; 
+}
+
+.advantage-title {
+	margin-bottom: 30px;
+	line-height: 2.5;
+}
+
+/*bid画像*/
+.bidding-image {
+	margin: 50px auto;
+	max-width: 300px;
+}
+
+.dealer-comparison-explanation .comparison-image {
+	margin: auto;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .use-people {
+			font-size: 1.8rem;
+		}
+
+		.green-zone {
+			font-size: 1.5rem;
+		}
+
+		.yellow-font {
+			font-size: 2.3rem;
+		}
+
+		.trust-and-advantage-section .yellow-line {
+			font-size: 1.6rem;
+		}
+
+		.greenfont-yellowline-s {
+			font-size: 1.6rem;
+		}
+
+		/*bid画像*/
+		.bidding-image {
+			max-width: 350px;
+		}
+}
+
+
+
+/*------CTA 文章補足あり-------*/
+
+/* -------------------- 最終CTAエリア 2 (文章補足あり) -------------------- */
+
+.final-cta-area-2 {
+	padding: 30px 20px;
+	background-color: #ffffff;
+	text-align: center;
+}
+
+/* -------------------- CTAテキスト部分 -------------------- */
+
+
+/* 下部のメインメッセージ */
+.cta-call-to-action {
+	font-size: 0.95rem;
+	font-weight: 400;
+}
+
+/* 「今の最高額」の強調 */
+.cta-call-to-action strong {
+	font-weight: 900;
+	font-size: 1.1rem; 
+}
+
+.final-cta-area-2 .main-cta-button  {
+	line-height: 1.7;
+	padding-top: 45px;
+}
+
+.final-cta-area-2 .main-cta-button::before {
+	right: 25px;
+	top: 10px;
+}
+
+/* --- 標準設定（スマホ）：改行を有効にする --- */
+.sp-only-br {
+    display: inline; /* 通常どおり改行として機能 */
+}
+
+/* --- 555px以上の設定：改行を消して横に繋げる --- */
+@media (min-width: 555px) {
+    .sp-only-br {
+        display: none; /* 改行を「存在しないもの」にする */
+    }
+
+		.cta-call-to-action {
+			font-size: 1.0rem;
+		}
+}
+
+
+/* -------------------- ポイントセクション -------------------- */
+.dealer-comparison-section {
+	background-color: #01BF61;
+	padding: 50px 35px;
+	color: white; /* セクション全体の文字色を白に設定 */
+  text-align: center;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .dealer-comparison-section {
+			padding: 50px;
+		}
+}
+
+
+/* -------------------- 見出し部分 (section-title-question) -------------------- */
+
+.section-title-question {
+  font-size: 1.5rem;
+  line-height: 2;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* 「安く」の黄色い強調 */
+.section-title-question .highlight-yellow {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #ffeb3b; /* 黄色 */
+  display: inline; /* 途中で改行しないように */
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+		.section-title-question {
+			font-size: 2.2rem;
+		}
+
+    .section-title-question .highlight-yellow {
+			font-size: 3rem;
+		}
+}
+
+
+/* -------------------- 導入文 (reason-intro) -------------------- */
+
+.reason-intro {
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+/* 「3つの理由」の強調 */
+.yellow-font-s {
+  font-weight: 900;
+  color: #ffeb3b; /* 黄色 */
+	font-size: 1.5rem;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .reason-intro {
+			font-size: 1.2rem;
+		}
+
+		.yellow-font-s {
+			font-size: 1.7rem;
+		}
+}
+
+/* -------------------- 3つのポイントセクション (container) -------------------- */
+
+.container {
+  padding: 30px 0 10px 0;
+	background-color: white; 
+	margin-bottom: 30px;
+}
+
+/* 各ポイントコンテナ (reason-point) */
+.reason-point {
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+/* Point 01, Point 02, Point 03 の見出し */
+.point-number {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #ffffff; 
+  margin: 0;
+	background-color: #01BF61;/* 緑色 */
+	position: relative;
+  display: inline-block;
+	padding: 0 10px;
+}
+
+/* タイトル左右の横線 */
+.dealer-comparison-section .point-number::before,
+.dealer-comparison-section .point-number::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 85px;
+    height: 2px;
+    background-color: #01BF61;
+}
+
+.point-number::before { left: 100%; }
+.point-number::after { right: 100%; }
+
+/* Point タイトル */
+.point-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.4;
+  margin: 25px 0;
+	color: #01BF61;
+}
+
+/* 画像コンテナ */
+.reason-point .point-image {
+  margin: 15px 0;
+}
+
+/* 説明テキスト */
+.point-explanation {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  text-align: left; /* 説明文、左寄せ*/
+	color: #333;
+	margin-top: 35px;
+	font-weight: 700;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .reason-point {
+			padding: 20px 40px;
+		}
+
+		.point-number {
+			margin: 0 30% 10px;
+			font-size: 1.4rem;
+		}
+
+		.point-explanation {
+			font-size: 1.1rem;
+		}
+
+		
+		.dealer-comparison-section .point-number::before,
+		.dealer-comparison-section .point-number::after{
+			width: 150px;
+		}
+}
+
+
+/* -------------------- まとめとCTA (section-summary-cta) -------------------- */
+
+.section-summary-cta {
+  padding: 20px 0 0;
+}
+
+/*------- 3つの理由section -------*/
+.safety-and-trust-section {
+	background-color: #FCEE21;
+	padding: 80px 35px 5px 35px;
+	text-align: center;
+}
+
+.safety-and-trust-section .point-number::before,
+.safety-and-trust-section .point-number::after {
+	content: "";
+  position: absolute;
+  top: 50%;
+  width: 70px;
+  height: 2px;
+  background-color: #01BF61;
+}
+
+
+/* spanの下に余白を作る */
+.margin-bottom-adjust {
+  display: inline-block; /* 余白を有効にするために必要 */
+  margin-bottom: 30px;   /* 下側の隙間を調整 */
+}
+
+.trust-message {
+	line-height: 2.5;
+  margin: 20px 0;
+	font-weight: 900;
+	font-size: 0.9rem;
+}
+
+.highlight-big {
+	font-size: 3rem;
+  font-weight: 900;
+  color: #01BF61;
+  display: inline;
+}
+
+.reason-intro-call {
+	font-size: 1.3rem;
+	color: #01BF61;
+	font-weight: 700;
+	line-height: 1.8;
+  margin: 30px 0;
+}
+
+
+/*3つの理由*/
+.reason-point {
+	color: #01BF61;
+}
+
+.reason-detail {
+	font-size: 1rem;
+	line-height: 2;
+	margin: 35px 0 0 0;
+}
+
+.reason-detail-sub {
+	font-size: 1.1rem;
+	margin-top: 10px;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .safety-and-trust-section {
+			padding: 80px 50px 5px 50px;
+		}
+
+		.trust-message {
+			font-size: 1.3rem;
+		}
+
+		.highlight-big {
+			font-size: 4rem;
+		}
+
+		.reason-intro-call {
+			font-size: 1.6rem;
+		}
+
+		.reason-detail {
+			font-size: 1.3rem;
+		}
+
+		.reason-detail-sub {
+			font-size: 1.2rem;
+		}
+
+		.safety-and-trust-section .point-number::before,
+		.safety-and-trust-section .point-number::after {
+			width: 130px;
+		}
+}
+
+/* -------------------- お客様の声セクション (user-voice-section) -------------------- */
+
+.user-voice-section {
+    padding: 50px 25px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+/* 英語ラベル (User's Voice) */
+.user-voice-label {
+    font-size: 0.9rem;
+    color: #01BF61;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* セクションメインタイトル (お客様の声) */
+.section-title-main {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #01BF61;
+    margin: 0 0 30px 0;
+    position: relative;
+    display: inline-block;
+    padding: 0 40px;
+}
+
+/* タイトル左右の横線 */
+.section-title-main::before,
+.section-title-main::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background-color: #01BF61;
+}
+
+.section-title-main::before { left: 0; }
+.section-title-main::after { right: 0; }
+
+/* サブタイトル (これが「一括査定」の実力です。) */
+.section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.section-subtitle .highlight-main {
+    background: linear-gradient(transparent 60%, #ffeb3b 60%);
+    padding: 0 2px;
+}
+
+/* -------------------- ボイスカードリスト (voice-list) -------------------- */
+
+.voice-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 450px; /* カードの横幅制限 */
+}
+
+/* 各カードアイテム */
+.voice-item {
+    background-color: #f4faf6; /* 薄い緑色の背景 */
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 柔らかい影 */
+    text-align: left;
+}
+
+/* ユーザー情報エリア (画像と実績) */
+.user-info-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 0 20px 15px 20px;
+    border-bottom: 1px solid #01BF61; /* 区切り線 */
+}
+
+/* アバター画像 */
+.user-avatar {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px; /* 少し角を丸く */
+}
+
+.result-text {
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 0 0 5px 0;
+}
+
+.user-attribute {
+    font-size: 0.8rem;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* 引用コメント */
+.user-comment {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: #333;
+    font-style: normal; /* blockquoteの標準イタリックを解除 */
+		padding: 0 13px;
+}
+
+.comment-lead {
+	font-size: 0.8rem;
+	font-weight: 700;
+	/* ★マージンやパディングが効くようにいれる */
+  display: block; 
+  /* 下側の余白部分*/
+  margin-bottom: 10px;
+}
+
+/* ---- 偶数番目のカードを左右反転させる --- */
+
+/* 画像に合わせて、2枚目と4枚目のアバターを右側に配置 */
+.voice-item:nth-child(even) .user-info-area {
+    flex-direction: row-reverse;
+}
+
+.voice-item:nth-child(even) .user-result {
+    text-align: left;
+}
+
+/*-------- 最後のsection ---------*/
+
+.final-closing-section .yellow-line {
+	font-size: 1.2rem;
+}
+
+.closing-title-main {
+	font-size: 1.4rem;
+  padding: 10px 5px 0;
+}
+
+/* PCサイズで元の大きさに戻す */
+@media (min-width: 555px) {
+    .comment-lead {
+			font-size: 1.05rem;
+		}
+
+		.user-comment {
+			font-size: 0.95rem;
+		}
+
+		.final-closing-section .yellow-line {
+			font-size: 1.6rem;
+		}
+
+		.result-text {
+    font-size: 1.05rem;
+		}
+
+		.user-voice-section {
+			padding: 50px 20px;
+		}
+
+		.user-attribute {
+    font-size: 0.9rem;
+		}
+}
+
+
