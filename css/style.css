@@ -30,7 +30,7 @@ li {
 		
 		/* LPのコンテンツ領域の背景色（白） */
 		background-color: #ffffff;
-		padding-bottom: 25px;
+		padding-bottom: 20px;
 
 		/* モバイルでの左右の余白（コンテンツが画面端に張り付かないように） */
 		/* bodyにpaddingを入れる代わりに、lp-containerの子要素で対応 */
@@ -72,6 +72,20 @@ img {
 		text-align: right; /* テキスト全体は右寄せを維持 */
 		position: relative;
 		z-index: 10;
+}
+
+/*LPタイトル*/
+.lp-title {
+	background-color: #FCEE21;
+	padding: 3px 5px;
+  display: flex;
+  justify-content: flex-start; /* 確実に左寄せにする */
+}
+
+/* アイコン画像のサイズ調整 */
+.lp-logo img {
+    height: 24px;        /* 文字の高さに合わせて調整 */
+    width: auto;
 }
 
 /* -------------------- 斜めの白い切り欠き（擬似要素で作成） -------------------- */
@@ -125,6 +139,14 @@ img {
 
 		.highlight-main {
 			font-size: 4rem;
+		}
+
+		.lp-title {
+			padding: 5px;
+		}
+
+		.lp-logo img {
+    height: 35px;  
 		}
 }
 
@@ -445,7 +467,7 @@ img {
 /* -------------------- CTAボタンエリア (cta-button-area) -------------------- */
 
 .cta-button-area {
-		padding: 0px 20px 30px 20px;
+		padding: 0px 20px 20px 20px;
 		text-align: center;
 		/* 背景色を白にして、ボタンを目立たせる */
 		background-color: #ffffff; 
@@ -1091,6 +1113,15 @@ img {
   padding: 10px 5px 0;
 }
 
+.company {
+		font-size: 0.5em;
+}
+
+.company a {
+		color: #333;
+		text-decoration: underline;
+}
+
 /* PCサイズで元の大きさに戻す */
 @media (min-width: 555px) {
     .comment-lead {
@@ -1116,6 +1147,11 @@ img {
 		.user-attribute {
     font-size: 0.9rem;
 		}
+
+		.company {
+				font-size: 0.7em;
+		}
+
 }
 
 
