@@ -546,21 +546,6 @@ img {
 		position: relative; /* 擬似要素の基準とする */
 }
 
-/* 白い矢印の擬似要素 */
-.main-cta-button::before {
-		content: '↗'; /* 上昇を示す矢印のユニコード */
-		position: absolute;
-		top: 32px; /* 上端からの位置 */
-		left: 20px; /* 左端からの位置 */
-		
-		color: rgba(255, 255, 255, 0.8); /* 透明度のある白 */
-		font-size: 1.3rem;
-		font-weight: 900;
-		
-		/* 角度を画像に近づける */
-		transform: rotate(10deg); 
-}
-
 /* PCサイズで元の大きさに戻す */
 @media (min-width: 555px) {
     .main-cta-button span:first-child {
@@ -680,13 +665,8 @@ img {
 
 .final-cta-area-2 .main-cta-button  {
 	line-height: 1.7;
-	padding-top: 45px;
 }
 
-.final-cta-area-2 .main-cta-button::before {
-	right: 25px;
-	top: 10px;
-}
 
 /* --- 標準設定（スマホ）：改行を有効にする --- */
 .sp-only-br {
